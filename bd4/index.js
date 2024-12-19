@@ -30,7 +30,7 @@ app.get("/restaurants", async (req, res) => {
     console.log(result);
     console.log(result.restaurants.length)
     if (result.restaurants.length == 0) {
-      res.status(404).json({ message: "No Restaurants Found" })
+     return res.status(404).json({ message: "No Restaurants Found" })
     }
     res.status(200).json(result);
   } catch (ex) {
@@ -50,7 +50,7 @@ app.get("/restaurants/details/:id", async (req, res) => {
     let id = parseInt(req.params.id);
     let result = await fetchRestaurantsById(id);
     if (result.restaurants.length == 0) {
-      res.status(404).json({ message: "No Restaurants Found" })
+     return res.status(404).json({ message: "No Restaurants Found" })
     }
     res.status(200).json(result);
   } catch (ex) {
@@ -69,7 +69,7 @@ app.get("/restaurants/cuisine/:cuisine", async (req, res) => {
     let cuisine = req.params.cuisine;
     let result = await fetchRestaurantsByCuisine(cuisine);
     if (result.restaurants.length == 0) {
-      res.status(404).json({ message: "No Restaurants Found" })
+      return res.status(404).json({ message: "No Restaurants Found" })
     }
     res.status(200).json(result);
   } catch (ex) {
@@ -114,7 +114,7 @@ app.get("/restaurants/sort-by-rating", async (req, res) => {
   try {
     let result = await sortByRating();
     if (result.restaurants.length == 0) {
-      res.status(404).json({ message: "No Restaurants Found" })
+     return  res.status(404).json({ message: "No Restaurants Found" })
     }
     res.status(200).json(result);
   } catch (ex) {
@@ -134,7 +134,7 @@ app.get("/dishes", async (req, res) => {
   try {
     let result = await fetchAllDishes();
     if (result.dishes.length == 0) {
-      res.status(404).json({ message: "No Dishes Found" })
+      return res.status(404).json({ message: "No Dishes Found" })
     }
     res.status(200).json(result);
   } catch (ex) {
@@ -195,7 +195,7 @@ app.get("/dishes/sort-by-price", async (req, res) => {
   try {
     let result = await sortDishesByPrice();
     if (result.dishes.length == 0) {
-      res.status(404).json({ message: "No Dishes Found" })
+      return res.status(404).json({ message: "No Dishes Found" })
     }
     res.status(200).json(result);
   } catch (ex) {
